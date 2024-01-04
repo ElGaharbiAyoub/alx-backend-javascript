@@ -5,10 +5,13 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
   return Promise.allSettled([
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
-  ]).then((values) => [
-    values.map((value) => ({
-      status: value.status,
-      value: value.status === 'rejected' ? `${value.reason}` : value.value,
-    })),
-  ]);
+  ]).then((values) => {
+    for (const value of values) {
+      if (value.status === 'rejected') {
+        value.value = `Error: ${value.reason.message}`;
+        delete value.reason;
+      }
+    }
+    return values;
+  });
 }
