@@ -1,11 +1,11 @@
-import fs from 'fs';
+const fs = require('fs');
 
 function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
     const lines = data.split('\n');
     const students = lines
-      .filter((line) => line)
+      .filter((line) => line.trim())
       .map((line) => line.split(','));
     const studentsCount = students.length - 1;
     const studentsByField = students.slice(1).reduce((acc, student) => {
@@ -16,7 +16,7 @@ function countStudents(path) {
     }, {});
     console.log(`Number of students: ${studentsCount}`);
     for (const field in studentsByField) {
-      if (field) {
+      if (Object.prototype.hasOwnProperty.call(studentsByField, field)) {
         const list = studentsByField[field];
         console.log(
           `Number of students in ${field}: ${list.length}. List: ${list.join(
@@ -30,4 +30,4 @@ function countStudents(path) {
   }
 }
 
-export default countStudents;
+module.exports = countStudents;
