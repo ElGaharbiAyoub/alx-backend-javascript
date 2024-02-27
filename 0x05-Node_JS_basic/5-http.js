@@ -11,6 +11,7 @@ function countStudents(path) {
       if (err) {
         reject(new Error('Cannot load the database'));
       } else {
+        let output = '';
         const lines = data.split('\n');
         const students = lines
           .filter((line) => line)
@@ -22,18 +23,16 @@ function countStudents(path) {
           acc[field].push(student[0]);
           return acc;
         }, {});
-        console.log(`Number of students: ${studentsCount}`);
+        output += `Number of students: ${studentsCount}\n`;
         for (const field in studentsByField) {
           if (field) {
             const list = studentsByField[field];
-            console.log(
-              `Number of students in ${field}: ${
-                list.length
-              }. List: ${list.join(', ')}`
-            );
+            output += `Number of students in ${field}: ${
+              list.length
+            }. List: ${list.join(', ')}\n`;
           }
         }
-        resolve();
+        resolve(output);
       }
     });
   });
@@ -49,7 +48,7 @@ const app = http.createServer((req, res) => {
   }
   if (req.url === '/students') {
     res.write('This is the list of our students\n');
-    countStudents(path)
+    countStudents(path.toString())
       .then((response) => {
         const outString = response.slice(0, -1);
         res.end(outString);
