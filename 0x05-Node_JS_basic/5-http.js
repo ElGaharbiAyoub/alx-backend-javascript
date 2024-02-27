@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const port = 1245;
 const hostname = 'localhost';
-const path = process.argv[2];
+const path = process.argv[2].toString();
 
 function countStudents(path) {
   return new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ function countStudents(path) {
             console.log(
               `Number of students in ${field}: ${
                 list.length
-              }. List: ${list.join(', ')}`,
+              }. List: ${list.join(', ')}`
             );
           }
         }
@@ -53,7 +53,7 @@ const app = http.createServer((req, res) => {
     countStudents(path)
       .then((response) => {
         const outString = response.slice(0, -1);
-        response.end(outString);
+        res.end(outString);
       })
       .catch(() => {
         res.statusCode = 404;
