@@ -30,7 +30,7 @@ function countStudents(path) {
             console.log(
               `Number of students in ${field}: ${
                 list.length
-              }. List: ${list.join(', ')}`,
+              }. List: ${list.join(', ')}`
             );
           }
         }
@@ -52,7 +52,8 @@ const app = http.createServer((req, res) => {
     res.write('This is the list of our students\n');
     countStudents(path)
       .then((response) => {
-        res.end(response);
+        const outString = output.slice(0, -1);
+        response.end(outString);
       })
       .catch(() => {
         res.statusCode = 404;
