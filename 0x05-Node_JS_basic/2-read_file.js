@@ -1,3 +1,4 @@
+#!/usr/bin/node
 const fs = require('fs');
 
 function countStudents(path) {
@@ -5,7 +6,7 @@ function countStudents(path) {
     const data = fs.readFileSync(path, 'utf8');
     const lines = data.split('\n');
     const students = lines
-      .filter((line) => line.trim())
+      .filter((line) => line)
       .map((line) => line.split(','));
     const studentsCount = students.length - 1;
     const studentsByField = students.slice(1).reduce((acc, student) => {
@@ -16,12 +17,12 @@ function countStudents(path) {
     }, {});
     console.log(`Number of students: ${studentsCount}`);
     for (const field in studentsByField) {
-      if (Object.prototype.hasOwnProperty.call(studentsByField, field)) {
+      if (field) {
         const list = studentsByField[field];
         console.log(
           `Number of students in ${field}: ${list.length}. List: ${list.join(
-            ', '
-          )}`
+            ', ',
+          )}`,
         );
       }
     }
