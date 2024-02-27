@@ -1,5 +1,4 @@
-#!/usr/bin/node
-const fs = require('fs');
+import fs from 'fs';
 
 function countStudents(path) {
   try {
@@ -31,4 +30,4 @@ function countStudents(path) {
   }
 }
 
-module.exports = countStudents;
+export default countStudents;
