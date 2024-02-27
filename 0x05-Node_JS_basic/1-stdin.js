@@ -8,11 +8,18 @@ const rl = readline.createInterface({
 
 console.log('Welcome to Holberton School, what is your name?');
 
-rl.once('line', (input) => {
-  console.log(`Your name is: ${input}`);
-  rl.close();
-});
+if (process.stdin.isTTY) {
+  rl.once('line', (input) => {
+    console.log(`Your name is: ${input}`);
+    process.exit();
+  });
+} else {
+  rl.once('line', (input) => {
+    console.log(`Your name is: ${input}`);
+    process.exit();
+  });
 
-process.on('exit', () => {
-  process.stdout.write('This important software is now closing\n');
-});
+  process.on('exit', () => {
+    process.stdout.write('This important software is now closing\n');
+  });
+}
