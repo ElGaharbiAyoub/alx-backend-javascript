@@ -1,10 +1,9 @@
-#!/usr/bin/node
 const http = require('http');
 const fs = require('fs');
 
 const port = 1245;
-const hostname = 'localhost';
-const path = process.argv[2].toString();
+const hostname = '127.0.0.1';
+const path = process.argv[2];
 
 function countStudents(path) {
   return new Promise((resolve, reject) => {
