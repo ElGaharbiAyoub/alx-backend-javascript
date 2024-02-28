@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   countStudents(path.toString())
     .then((response) => {
-      res.send(`This is the list of our students\n ${response.slice(0, -1)}`);
+      res.send(`This is the list of our students\n${response.slice(0, -1)}`);
     })
     .catch((err) => {
       console.log(err);
