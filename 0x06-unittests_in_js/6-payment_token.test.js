@@ -1,5 +1,5 @@
 #!/usr/bin/node
-const { getPaymentTokenFromAPI } = require('./6-payment_token');
+const getPaymentTokenFromAPI = require('./6-payment_token');
 const expect = require('chai').expect;
 
 describe('getPaymentTokenFromAPI', () => {
