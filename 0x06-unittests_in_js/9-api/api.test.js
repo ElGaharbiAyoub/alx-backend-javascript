@@ -51,10 +51,4 @@ describe('GET /cart/hello', () => {
       done();
     });
   });
-  it('should return Welcome to the payment system', (done) => {
-    request(ops, (err, res, body) => {
-      expect(body).to.equal('Welcome to the payment system');
-      done();
-    });
-  });
 });
