@@ -1,6 +1,6 @@
 #!/usr/bin/node
 const { expect } = require('chai');
-const calculateNumber = require('./2-calcul.js');
+const calculateNumber = require('./2-calcul_chai.js');
 
 describe('calculateNumber', function () {
   it('should return 4 when adding 1 and 3', function () {
