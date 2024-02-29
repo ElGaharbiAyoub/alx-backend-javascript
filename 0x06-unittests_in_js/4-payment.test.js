@@ -7,7 +7,7 @@ describe('sendPaymentRequestToApi', function () {
     const calculateNumberSpy = sinon.spy(console, 'log');
     const subt = sinon.stub(Utils, 'calculateNumber').returns(10);
     sendPaymentRequestToApi(100, 20);
-    sinon.assert.calledWith(calculateNumberSpy, 'SUM', 100, 20);
     sinon.assert.calledWith(subt, 'SUM', 100, 20);
+    sinon.assert.calledWith(calculateNumberSpy, 'The total is: 10');
   });
 });
