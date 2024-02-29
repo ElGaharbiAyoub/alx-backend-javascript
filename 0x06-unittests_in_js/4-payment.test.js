@@ -9,6 +9,5 @@ describe('sendPaymentRequestToApi', function () {
     sendPaymentRequestToApi(100, 20);
     sinon.assert.calledWith(calculateNumberSpy, 'SUM', 100, 20);
     sinon.assert.calledWith(subt, 'SUM', 100, 20);
-    calculateNumberSpy.restore();
   });
 });
